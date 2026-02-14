@@ -1,4 +1,4 @@
-# 🚀 Data Compare – Smart CSV & Excel Analysis Platform
+# 🚀 Data Compare AI – Smart CSV & Excel Analysis Platform
 
 A modern full-stack web application that helps teams **compare, validate, and analyze structured data files** in seconds.
 
