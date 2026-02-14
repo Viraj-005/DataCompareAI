@@ -1,7 +1,6 @@
 
 <div align="center">
-======= 
-# 🚀 DataCompare AI – Smart CSV & Excel Analysis Platform =======
+======= 🚀 DataCompare AI – Smart CSV & Excel Analysis Platform =======
 
   <h1>⚡ DataCompare AI</h1>
 
