@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Dark Mode (Default) */
+  --color-dark-900: #0a0f1a;
+  /* Main BG */
+  --color-dark-800: #0f1923;
+  /* Card/Nav BG */
+  --color-dark-700: #1a2633;
+  /* Border/Hover */
+  --color-dark-600: #243040;
+  /* Secondary Button */
+  --color-dark-500: #2d3a4a;
+  /* Divider */
+  --color-dark-400: #3d4f63;
+  /* Text Secondary/Icon */
+
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+}
+
+.light-mode {
+  /* Light Mode */
+  --color-dark-900: #ffffff;
+  --color-dark-800: #f8fafc;
+  --color-dark-700: #e2e8f0;
+  --color-dark-600: #f1f5f9;
+  --color-dark-500: #cbd5e1;
+  --color-dark-400: #94a3b8;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-dark-900);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-dark-800);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-dark-400);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-dark-500);
+}
+
+/* Status badges */
+.badge-active {
+  @apply px-2.5 py-0.5 text-xs font-medium rounded-full bg-emerald-500/20 text-emerald-400;
+}
+
+.badge-archived {
+  @apply px-2.5 py-0.5 text-xs font-medium rounded-full bg-gray-500/20 text-gray-400;
+}
+
+.badge-completed {
+  @apply px-2.5 py-0.5 text-xs font-medium rounded-full bg-emerald-500/20 text-emerald-400;
+}
+
+.badge-running {
+  @apply px-2.5 py-0.5 text-xs font-medium rounded-full bg-amber-500/20 text-amber-400;
+}
+
+.badge-failed {
+  @apply px-2.5 py-0.5 text-xs font-medium rounded-full bg-red-500/20 text-red-400;
+}
+
+.badge-pending {
+  @apply px-2.5 py-0.5 text-xs font-medium rounded-full bg-blue-500/20 text-blue-400;
+}
+
+/* Glassmorphism card */
+.glass-card {
+  @apply bg-dark-700/50 backdrop-blur-sm border border-dark-500/30 rounded-xl transition-colors duration-300;
+}
+
+/* Transitions */
+.transition-smooth {
+  @apply transition-all duration-200 ease-in-out;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply px-4 py-2 bg-accent hover:bg-accent-hover text-white font-medium rounded-lg transition-smooth focus:ring-2 focus:ring-accent/50 focus:outline-none;
+}
+
+.btn-secondary {
+  @apply px-4 py-2 bg-dark-600 hover:bg-dark-500 text-gray-300 font-medium rounded-lg transition-smooth border border-dark-400/30;
+}
+
+/* Input styles */
+.input-dark {
+  @apply w-full px-3.5 py-2.5 bg-dark-800 border border-dark-500/50 rounded-lg text-gray-200 placeholder-gray-500 focus:border-accent focus:ring-1 focus:ring-accent/30 focus:outline-none transition-smooth;
+}
+
+/* Severity colors */
+.severity-critical {
+  @apply text-red-400;
+}
+
+.severity-warning {
+  @apply text-amber-400;
+}
+
+.severity-info {
+  @apply text-blue-400;
+}
