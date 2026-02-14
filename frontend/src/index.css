@@ -4,17 +4,17 @@
 
 :root {
   /* Dark Mode (Default) */
-  --color-dark-900: #0a0f1a;
+  --color-dark-900: 10 15 26;
   /* Main BG */
-  --color-dark-800: #0f1923;
+  --color-dark-800: 15 25 35;
   /* Card/Nav BG */
-  --color-dark-700: #1a2633;
+  --color-dark-700: 26 38 51;
   /* Border/Hover */
-  --color-dark-600: #243040;
+  --color-dark-600: 36 48 64;
   /* Secondary Button */
-  --color-dark-500: #2d3a4a;
+  --color-dark-500: 45 58 74;
   /* Divider */
-  --color-dark-400: #3d4f63;
+  --color-dark-400: 61 79 99;
   /* Text Secondary/Icon */
 
   --text-primary: #e2e8f0;
@@ -23,12 +23,12 @@
 
 .light-mode {
   /* Light Mode */
-  --color-dark-900: #ffffff;
-  --color-dark-800: #f8fafc;
-  --color-dark-700: #e2e8f0;
-  --color-dark-600: #f1f5f9;
-  --color-dark-500: #cbd5e1;
-  --color-dark-400: #94a3b8;
+  --color-dark-900: 255 255 255;
+  --color-dark-800: 248 250 252;
+  --color-dark-700: 226 232 240;
+  --color-dark-600: 241 245 249;
+  --color-dark-500: 203 213 225;
+  --color-dark-400: 148 163 184;
 
   --text-primary: #0f172a;
   --text-secondary: #475569;
@@ -95,7 +95,8 @@ body {
 
 /* Glassmorphism card */
 .glass-card {
-  @apply bg-dark-700/50 backdrop-blur-sm border border-dark-500/30 rounded-xl transition-colors duration-300;
+  @apply backdrop-blur-sm border border-dark-500/30 rounded-xl transition-colors duration-300;
+  background-color: rgb(var(--color-dark-700) / 0.5);
 }
 
 /* Transitions */
