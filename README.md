@@ -1,134 +1,119 @@
-🚀 Data Compare – Smart CSV & Excel Analysis Platform
+# 🚀 Data Compare – Smart CSV & Excel Analysis Platform
 
-A modern full-stack web application that helps teams compare, validate, and analyze structured data files in seconds.
+A modern full-stack web application that helps teams **compare, validate, and analyze structured data files** in seconds.
 
 Built with high-performance APIs and an interactive dashboard, Data Compare eliminates manual spreadsheet checking and enables confident decision-making.
 
-✨ Why Data Compare?
+---
+
+## ✨ Why Data Compare?
 
 Businesses, analysts, and operations teams often spend hours trying to:
 
-find differences between file versions
+* find differences between file versions
+* validate data quality
+* detect missing or duplicate records
+* identify abnormal values
 
-validate data quality
-
-detect missing or duplicate records
-
-identify abnormal values
-
-Data Compare automates all of it.
+**Data Compare automates all of it.**
 
 Upload → Compare → Detect issues → Export reports.
 
-🧠 Core Capabilities
-📁 Multi-File Upload
+---
 
-Supports CSV & Excel
+## 🧠 Core Capabilities
 
-Upload multiple datasets at once
+### 📁 Multi-File Upload
 
-Automatic parsing & structuring
+* Supports CSV & Excel
+* Upload multiple datasets at once
+* Automatic parsing & structuring
 
-⚖️ Intelligent File Comparison
+### ⚖️ Intelligent File Comparison
 
-Row & column difference detection
+* Row & column difference detection
+* Missing records
+* Duplicate identification
+* Data type validation
+* Schema mismatches
 
-Missing records
+### 🚨 Anomaly Detection
 
-Duplicate identification
+* Outlier discovery
+* Unexpected spikes or drops
+* Statistical irregularities
 
-Data type validation
+### 📊 Results Visualization
 
-Schema mismatches
+* Clear, interactive tables
+* Highlighted problem areas
+* Easy filtering & searching
 
-🚨 Anomaly Detection
+### 📝 Report Generation
 
-Outlier discovery
+* Download comparison outputs
+* Share findings with teams
 
-Unexpected spikes or drops
+### 🕓 History Tracking
 
-Statistical irregularities
+* Revisit previous runs
+* Monitor past issues
+* Improve data reliability over time
 
-📊 Results Visualization
+### 🔐 Secure Access
 
-Clear, interactive tables
+* User registration
+* Login authentication
+* Protected workflows
 
-Highlighted problem areas
+---
 
-Easy filtering & searching
+## 🧩 System Overview
 
-📝 Report Generation
-
-Download comparison outputs
-
-Share findings with teams
-
-🕓 History Tracking
-
-Revisit previous runs
-
-Monitor past issues
-
-Improve data reliability over time
-
-🔐 Secure Access
-
-User registration
-
-Login authentication
-
-Protected workflows
-
-🧩 System Overview
+```
 Frontend (React + Vite)
         ↓
 REST API Layer
         ↓
 Data Processing & Comparison Engine (Python)
-
+```
 
 Designed for scalability, modularity, and future AI extensions.
 
-🖥️ Application Screens
+---
 
-Login & Registration
+## 🖥️ Application Screens
 
-Dashboard with activity summary
+* Login & Registration
+* Dashboard with activity summary
+* File upload center
+* Comparison workspace
+* Detailed results viewer
+* Anomaly insights
+* Historical runs
+* Report downloads
+* User settings
 
-File upload center
+---
 
-Comparison workspace
+## ⚙️ Technology Stack
 
-Detailed results viewer
+### Backend
 
-Anomaly insights
+* Python
+* FastAPI
+* Pandas for data processing
 
-Historical runs
+### Frontend
 
-Report downloads
+* React
+* Vite
+* Axios
+* Modern dashboard UI
 
-User settings
+---
 
-⚙️ Technology Stack
-Backend
-
-Python
-
-FastAPI
-
-Pandas for data processing
-
-Frontend
-
-React
-
-Vite
-
-Axios
-
-Modern dashboard UI
-
-🎯 Who Is This For?
+## 🎯 Who Is This For?
 
 ✔ Data Analysts
 ✔ Finance Teams
@@ -137,21 +122,20 @@ Modern dashboard UI
 ✔ Product Teams
 ✔ Anyone handling frequent data revisions
 
-💡 Example Use Cases
+---
 
-Daily sales reconciliation
+## 💡 Example Use Cases
 
-Commission validation
+* Daily sales reconciliation
+* Commission validation
+* Inventory audits
+* Migration verification
+* Vendor data matching
+* Regulatory reporting checks
 
-Inventory audits
+---
 
-Migration verification
-
-Vendor data matching
-
-Regulatory reporting checks
-
-🏗️ What Makes This Project Strong?
+## 🏗️ What Makes This Project Strong?
 
 This project demonstrates:
 
@@ -163,31 +147,31 @@ This project demonstrates:
 ✅ Authentication systems
 ✅ Production-style architecture
 
-🚀 Future Enhancements
+---
 
-AI-powered root cause analysis
+## 🚀 Future Enhancements
 
-Smart column mapping
+* AI-powered root cause analysis
+* Smart column mapping
+* Automated scheduled comparisons
+* Email / Slack alerts
+* Role-based access
+* Cloud storage integrations
+* Visual dashboards & KPIs
 
-Automated scheduled comparisons
+---
 
-Email / Slack alerts
+## 👨‍💻 Author
 
-Role-based access
-
-Cloud storage integrations
-
-Visual dashboards & KPIs
-
-👨‍💻 Author
-
-Viraj Induruwa
+**Viraj Induruwa**
 IT Undergraduate | Full-Stack & AI Enthusiast
 Panadura, Sri Lanka 🇱🇰
 
 Passionate about building intelligent systems that solve real business problems.
 
-⭐ Support the Project
+---
+
+## ⭐ Support the Project
 
 If you like this project:
 
