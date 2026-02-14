@@ -1,182 +1,111 @@
-# 🚀 Data Compare AI – Smart CSV & Excel Analysis Platform
+<div align="center">
 
-A modern full-stack web application that helps teams **compare, validate, and analyze structured data files** in seconds.
+  <h1>⚡ DataCompare AI</h1>
 
-Built with high-performance APIs and an interactive dashboard, Data Compare eliminates manual spreadsheet checking and enables confident decision-making.
+  <p>
+    <strong>Next-Gen Data Analysis & Validation Platform</strong>
+  </p>
 
----
+  <p>
+    <a href="#features">Features</a> •
+    <a href="#tech-stack">Tech Stack</a> •
+    <a href="#getting-started">Getting Started</a> •
+    <a href="#license">License</a>
+  </p>
 
-## ✨ Why Data Compare?
+  ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+  ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
+  ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+  ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+  ![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)
 
-Businesses, analysts, and operations teams often spend hours trying to:
+</div>
 
-* find differences between file versions
-* validate data quality
-* detect missing or duplicate records
-* identify abnormal values
+<br />
 
-**Data Compare automates all of it.**
+## 🚀 Overview
 
-Upload → Compare → Detect issues → Export reports.
+**DataCompare AI** is a powerful, full-stack solution designed to streamline data validation and analysis. It automates the tedious process of comparing large datasets, identifying anomalies, and generating actionable insights.
 
----
-
-## 🧠 Core Capabilities
-
-### 📁 Multi-File Upload
-
-* Supports CSV & Excel
-* Upload multiple datasets at once
-* Automatic parsing & structuring
-
-### ⚖️ Intelligent File Comparison
-
-* Row & column difference detection
-* Missing records
-* Duplicate identification
-* Data type validation
-* Schema mismatches
-
-### 🚨 Anomaly Detection
-
-* Outlier discovery
-* Unexpected spikes or drops
-* Statistical irregularities
-
-### 📊 Results Visualization
-
-* Clear, interactive tables
-* Highlighted problem areas
-* Easy filtering & searching
-
-### 📝 Report Generation
-
-* Download comparison outputs
-* Share findings with teams
-
-### 🕓 History Tracking
-
-* Revisit previous runs
-* Monitor past issues
-* Improve data reliability over time
-
-### 🔐 Secure Access
-
-* User registration
-* Login authentication
-* Protected workflows
+Whether you're a data analyst, QA engineer, or business operator, DataCompare AI helps you **trust your data** with confidence and speed.
 
 ---
 
-## 🧩 System Overview
+## <a name="features"></a>✨ Key Features
 
-```
-Frontend (React + Vite)
-        ↓
-REST API Layer
-        ↓
-Data Processing & Comparison Engine (Python)
-```
-
-Designed for scalability, modularity, and future AI extensions.
-
----
-
-## 🖥️ Application Screens
-
-* Login & Registration
-* Dashboard with activity summary
-* File upload center
-* Comparison workspace
-* Detailed results viewer
-* Anomaly insights
-* Historical runs
-* Report downloads
-* User settings
+| Feature | Description |
+| :--- | :--- |
+| **📁 Multi-File Upload** | Drag & drop support for CSV and Excel files. Automatic parsing and schema detection. |
+| **⚖️ Intelligent Comparison** | Row-by-row comparison to detect added, removed, and modified records with precision. |
+| **🚨 Anomaly Detection** | Advanced statistical analysis to spot outliers, value spikes, and null anomalies automatically. |
+| **📊 Visual Dashboard** | Interactive dashboard featuring real-time statistics, activity logs, and data health summaries. |
+| **📝 Comprehensive Reports** | Generate and download detailed comparison reports (CSV/Excel) to share findings. |
+| **🎨 Modern UI** | sleek, dark-mode interface designed with glassmorphism for a premium user experience. |
 
 ---
 
-## ⚙️ Technology Stack
-
-### Backend
-
-* Python
-* FastAPI
-* Pandas for data processing
+## <a name="tech-stack"></a>🛠️ Tech Stack
 
 ### Frontend
+- **Framework:** React (Vite)
+- **Styling:** Tailwind CSS + Vanilla CSS (Glassmorphism)
+- **Icons:** Lucide React
+- **HTTP Client:** Axios
+- **Routing:** React Router DOM
 
-* React
-* Vite
-* Axios
-* Modern dashboard UI
-
----
-
-## 🎯 Who Is This For?
-
-✔ Data Analysts
-✔ Finance Teams
-✔ Telecom Operations
-✔ QA Engineers
-✔ Product Teams
-✔ Anyone handling frequent data revisions
+### Backend
+- **Framework:** FastAPI (Python)
+- **Data Processing:** Pandas, NumPy
+- **Database:** SQLAlchemy ORM (SQLite/PostgreSQL)
+- **Validation:** Pydantic
+- **Security:** OAuth2 with JWT
 
 ---
 
-## 💡 Example Use Cases
+## <a name="getting-started"></a>🏁 Getting Started
 
-* Daily sales reconciliation
-* Commission validation
-* Inventory audits
-* Migration verification
-* Vendor data matching
-* Regulatory reporting checks
+Follow these steps to set up the project locally.
 
----
+### Prerequisites
+- Node.js (v16+)
+- Python (v3.9+)
 
-## 🏗️ What Makes This Project Strong?
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/Viraj-005/DataCompareAI.git
+cd DataCompareAI
+```
 
-This project demonstrates:
+### 2️⃣ Backend Setup
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
+*The backend API will run on `http://localhost:8000`*
 
-✅ API design
-✅ Real-world data engineering
-✅ File handling at scale
-✅ Error & anomaly analytics
-✅ Full-stack integration
-✅ Authentication systems
-✅ Production-style architecture
-
----
-
-## 🚀 Future Enhancements
-
-* AI-powered root cause analysis
-* Smart column mapping
-* Automated scheduled comparisons
-* Email / Slack alerts
-* Role-based access
-* Cloud storage integrations
-* Visual dashboards & KPIs
+### 3️⃣ Frontend Setup
+```bash
+cd ../frontend
+npm install
+npm run dev
+```
+*The frontend application will run on `http://localhost:5173`*
 
 ---
 
-## 👨‍💻 Author
+## � License
 
-**Viraj Induruwa**
-
-IT Undergraduate | Full-Stack & AI Enthusiast
-Panadura, Sri Lanka 🇱🇰
-
-Passionate about building intelligent systems that solve real business problems.
+This project is licensed under the MIT License.
 
 ---
 
-## ⭐ Support the Project
+<div align="center">
 
-If you like this project:
+  Created with ❤️ by **Viraj Induruwa**
 
-🌟 Star the repository
-🍴 Fork it
-🤝 Contribute
-📢 Share with your network
+  [LinkedIn](https://linkedin.com/in/viraj-induruwa) | [GitHub](https://github.com/Viraj-005)
+
+</div>
