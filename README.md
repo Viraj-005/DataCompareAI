@@ -1,8 +1,5 @@
-<<<<<<< HEAD
+
 <div align="center">
-=======
-# 🚀 DataCompare AI – Smart CSV & Excel Analysis Platform
->>>>>>> b788128227ab3193b9eec869199e52e38071d664
 
   <h1>⚡ DataCompare AI</h1>
 
