@@ -4,27 +4,27 @@ export default function Pagination({ currentPage, totalPages, onPageChange, tota
   if (totalPages <= 1) return null;
 
   return (
-    <div className="flex items-center justify-between border-t border-dark-500/30 px-5 py-4">
-      <div className="text-sm text-gray-500">
-        Showing <span className="font-medium text-gray-300">{indexOfFirstItem + 1}</span> to <span className="font-medium text-gray-300">{Math.min(indexOfLastItem, totalItems)}</span> of <span className="font-medium text-gray-300">{totalItems}</span> results
+    <div className="flex items-center justify-between border-none px-5 py-4">
+      <div className="text-sm text-[var(--text-secondary)]">
+        Showing <span className="font-bold text-[var(--text-primary)]">{indexOfFirstItem + 1}</span> to <span className="font-bold text-[var(--text-primary)]">{Math.min(indexOfLastItem, totalItems)}</span> of <span className="font-bold text-[var(--text-primary)]">{totalItems}</span> results
       </div>
       <div className="flex items-center gap-2">
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="p-1 px-3 py-1.5 rounded-lg border border-dark-500/50 text-gray-400 hover:bg-dark-600 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-smooth text-sm flex items-center gap-1"
+          className="px-4 py-2 rounded-xl bg-[rgb(var(--bg-600))] text-[var(--text-primary)] font-bold hover:bg-accent hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-smooth text-sm flex items-center gap-2 shadow-sm"
         >
-          <ChevronLeft size={14} /> Previous
+          <ChevronLeft size={16} /> Previous
         </button>
-        <span className="text-sm text-gray-400">
-            Page {currentPage} of {totalPages}
+        <span className="text-sm font-bold text-[var(--text-secondary)] px-2">
+            {currentPage} / {totalPages}
         </span>
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="p-1 px-3 py-1.5 rounded-lg border border-dark-500/50 text-gray-400 hover:bg-dark-600 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-smooth text-sm flex items-center gap-1"
+          className="px-4 py-2 rounded-xl bg-[rgb(var(--bg-600))] text-[var(--text-primary)] font-bold hover:bg-accent hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-smooth text-sm flex items-center gap-2 shadow-sm"
         >
-          Next <ChevronRight size={14} />
+          Next <ChevronRight size={16} />
         </button>
       </div>
     </div>

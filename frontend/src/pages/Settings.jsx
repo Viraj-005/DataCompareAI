@@ -76,7 +76,7 @@ export default function Settings() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-6 border-b border-[var(--color-dark-500)]/30 mb-6">
+      <div className="flex gap-6 border-b border-[var(--border-color)] mb-6">
         {tabs.map(tab => (
           <button
             key={tab.id}
@@ -101,11 +101,11 @@ export default function Settings() {
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">Full Name</label>
-                <input name="full_name" defaultValue={user?.full_name || ''} className="input-dark bg-[var(--color-dark-800)] text-[var(--text-primary)] border-[var(--color-dark-500)]/50" />
+                <input name="full_name" defaultValue={user?.full_name || ''} className="input-dark" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">Email</label>
-                <input name="email" type="email" defaultValue={user?.email || ''} className="input-dark bg-[var(--color-dark-800)] text-[var(--text-primary)] border-[var(--color-dark-500)]/50" />
+                <input name="email" type="email" defaultValue={user?.email || ''} className="input-dark" />
               </div>
             </div>
             <div className="pt-2">
@@ -121,15 +121,15 @@ export default function Settings() {
              <div className="space-y-4 max-w-md">
               <div>
                 <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">Current Password</label>
-                <input name="current_password" type="password" required className="input-dark bg-[var(--color-dark-800)] text-[var(--text-primary)] border-[var(--color-dark-500)]/50" />
+                <input name="current_password" type="password" required className="input-dark" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">New Password</label>
-                <input name="new_password" type="password" required className="input-dark bg-[var(--color-dark-800)] text-[var(--text-primary)] border-[var(--color-dark-500)]/50" />
+                <input name="new_password" type="password" required className="input-dark" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">Confirm New Password</label>
-                <input name="confirm_password" type="password" required className="input-dark bg-[var(--color-dark-800)] text-[var(--text-primary)] border-[var(--color-dark-500)]/50" />
+                <input name="confirm_password" type="password" required className="input-dark" />
               </div>
             </div>
             <div className="pt-2">
@@ -149,7 +149,7 @@ export default function Settings() {
                     { key: 'anomaly', label: 'Anomaly Notifications', desc: 'Get notified when anomalies are detected.' },
                     { key: 'weekly', label: 'Weekly Reports', desc: 'Receive a weekly summary of your data health.' },
                 ].map(item => (
-                    <div key={item.key} className="flex items-center justify-between py-3 border-b border-[var(--color-dark-500)]/20 last:border-0">
+                    <div key={item.key} className="flex items-center justify-between py-3 border-b border-[var(--border-color)] last:border-0">
                         <div>
                             <p className="text-sm font-medium text-[var(--text-primary)]">{item.label}</p>
                             <p className="text-xs text-[var(--text-secondary)] mt-0.5">{item.desc}</p>
@@ -161,7 +161,7 @@ export default function Settings() {
                                 onChange={() => handleNotificationChange(item.key)}
                                 className="sr-only peer" 
                             />
-                            <div className="w-11 h-6 bg-[var(--color-dark-600)] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent"></div>
+                            <div className="w-11 h-6 bg-[rgb(var(--bg-600))] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent"></div>
                         </label>
                     </div>
                 ))}
@@ -175,15 +175,15 @@ export default function Settings() {
             <div>
               <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-4">Settings Guide</h3>
               <div className="grid gap-4 md:grid-cols-2">
-                <div className="p-4 rounded-xl border border-[var(--color-dark-500)]/30 bg-[var(--color-dark-800)]/50">
+                <div className="p-4 rounded-xl border border-[var(--border-color)] bg-[rgb(var(--bg-700))]">
                   <h4 className="font-medium text-[var(--text-primary)] mb-1">Profile Tab</h4>
                   <p className="text-sm text-[var(--text-secondary)]">Update your personal information such as name and email address.</p>
                 </div>
-                <div className="p-4 rounded-xl border border-[var(--color-dark-500)]/30 bg-[var(--color-dark-800)]/50">
+                <div className="p-4 rounded-xl border border-[var(--border-color)] bg-[rgb(var(--bg-700))]">
                   <h4 className="font-medium text-[var(--text-primary)] mb-1">Password Tab</h4>
                   <p className="text-sm text-[var(--text-secondary)]">Securely change your account password to protect your data.</p>
                 </div>
-                <div className="p-4 rounded-xl border border-[var(--color-dark-500)]/30 bg-[var(--color-dark-800)]/50">
+                <div className="p-4 rounded-xl border border-[var(--border-color)] bg-[rgb(var(--bg-700))]">
                    <h4 className="font-medium text-[var(--text-primary)] mb-1">Notifications Tab</h4>
                    <p className="text-sm text-[var(--text-secondary)]">Customize which alerts and reports you want to receive via email or in-app.</p>
                 </div>
@@ -200,7 +200,7 @@ export default function Settings() {
                   { term: 'IQR (Interquartile Range)', def: 'A measure of statistical dispersion used to identify outliers by looking at the middle 50% of your data.' },
                   { term: 'Primary Key', def: 'A unique identifier (like an ID column) used to match rows between two files during comparison.' },
                 ].map((item, i) => (
-                  <div key={i} className="pb-4 border-b border-[var(--color-dark-500)]/20 last:border-0 last:pb-0">
+                  <div key={i} className="pb-4 border-b border-[var(--border-color)] last:border-0 last:pb-0">
                     <h4 className="font-medium text-accent text-sm mb-1">{item.term}</h4>
                     <p className="text-sm text-[var(--text-secondary)]">{item.def}</p>
                   </div>

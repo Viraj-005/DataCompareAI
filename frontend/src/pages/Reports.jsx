@@ -68,7 +68,7 @@ export default function Reports() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-white">Reports</h1>
+        <h1 className="text-2xl font-bold text-[var(--text-primary)]">Reports</h1>
         <p className="text-gray-400 text-sm mt-1">Download comparison results and analysis reports</p>
       </div>
 
@@ -76,17 +76,17 @@ export default function Reports() {
       <>
       {/* Comparison Reports */}
       <div className="glass-card mb-6">
-        <div className="px-5 py-4 border-b border-dark-500/30">
-          <h3 className="text-base font-semibold text-white">Comparison Reports</h3>
+        <div className="px-5 py-4 border-none">
+          <h3 className="text-base font-semibold text-[var(--text-primary)]">Comparison Reports</h3>
         </div>
-        <div className="divide-y divide-dark-500/10">
+        <div className="space-y-1">
           {paginatedComp.current.length === 0 && <p className="text-center py-8 text-gray-500 text-sm">No comparisons available</p>}
           {paginatedComp.current.map(c => (
-            <div key={c.id} className="flex items-center justify-between px-5 py-3.5 hover:bg-dark-600/30 transition-smooth">
+            <div key={c.id} className="flex items-center justify-between px-5 py-3.5 hover:bg-[rgb(var(--bg-700))] transition-smooth">
               <div className="flex items-center gap-3">
                 <FileBarChart size={16} className="text-accent" />
                 <div>
-                  <p className="text-sm text-gray-200">{c.name}</p>
+                  <p className="text-sm text-[var(--text-primary)] font-bold">{c.name}</p>
                   <p className="text-xs text-gray-500">{c.project_name} • {new Date(c.created_at).toLocaleDateString()}</p>
                 </div>
               </div>
@@ -110,15 +110,15 @@ export default function Reports() {
 
       {/* Anomaly Reports */}
       <div className="glass-card mb-6">
-        <div className="px-5 py-4 border-b border-dark-500/30">
-          <h3 className="text-base font-semibold text-white">Anomaly Reports (by File)</h3>
+        <div className="px-5 py-4 border-none">
+          <h3 className="text-base font-semibold text-[var(--text-primary)]">Anomaly Reports (by File)</h3>
         </div>
-        <div className="divide-y divide-dark-500/10">
+        <div className="space-y-1">
           {paginatedFiles.current.length === 0 && <p className="text-center py-8 text-gray-500 text-sm">No files available</p>}
           {paginatedFiles.current.map(f => (
-            <div key={f.id} className="flex items-center justify-between px-5 py-3.5 hover:bg-dark-600/30 transition-smooth">
+            <div key={f.id} className="flex items-center justify-between px-5 py-3.5 hover:bg-[rgb(var(--bg-700))] transition-smooth">
               <div>
-                <p className="text-sm text-gray-200">{f.original_filename}</p>
+                <p className="text-sm text-[var(--text-primary)] font-bold">{f.original_filename}</p>
                 <p className="text-xs text-gray-500">{f.project_name} • {f.row_count} rows</p>
               </div>
               <div className="flex gap-2">

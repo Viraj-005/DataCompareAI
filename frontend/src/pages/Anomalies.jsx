@@ -27,15 +27,21 @@ export default function Anomalies() {
   useEffect(() => { load(); }, [filters]);
 
   const severityBadge = (severity) => {
-    if (severity >= 8) return <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-red-500/20 text-red-400">Critical ({severity})</span>;
-    if (severity >= 5) return <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-amber-500/20 text-amber-400">Warning ({severity})</span>;
-    return <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-blue-500/20 text-blue-400">Info ({severity})</span>;
+    if (severity >= 8) return <span className="px-2.5 py-0.5 text-[10px] font-black uppercase tracking-widest rounded-md bg-red-500/10 text-red-600 border border-red-500/20">Critical ({severity})</span>;
+    if (severity >= 5) return <span className="px-2.5 py-0.5 text-[10px] font-black uppercase tracking-widest rounded-md bg-amber-500/10 text-amber-600 border border-amber-500/20">Warning ({severity})</span>;
+    return <span className="px-2.5 py-0.5 text-[10px] font-black uppercase tracking-widest rounded-md bg-blue-500/10 text-blue-600 border border-blue-500/20">Info ({severity})</span>;
   };
 
   const typeBadge = (type) => {
-    const colors = { zscore: 'text-purple-400 bg-purple-500/10', iqr: 'text-blue-400 bg-blue-500/10', negative: 'text-red-400 bg-red-500/10', spike: 'text-amber-400 bg-amber-500/10', deviation: 'text-pink-400 bg-pink-500/10' };
-    const cls = colors[type] || 'text-gray-400 bg-gray-500/10';
-    return <span className={`px-2 py-0.5 text-xs font-medium rounded-full ${cls}`}>{type}</span>;
+    const colors = { 
+        zscore: 'text-purple-600 bg-purple-500/10 border-purple-500/20', 
+        iqr: 'text-blue-600 bg-blue-500/10 border-blue-500/20', 
+        negative: 'text-red-600 bg-red-500/10 border-red-500/20', 
+        spike: 'text-amber-600 bg-amber-500/10 border-amber-500/20', 
+        deviation: 'text-pink-600 bg-pink-500/10 border-pink-500/20' 
+    };
+    const cls = colors[type] || 'text-gray-600 bg-gray-500/10 border-gray-500/20';
+    return <span className={`px-2.5 py-0.5 text-[10px] font-black uppercase tracking-widest rounded-md border ${cls}`}>{type}</span>;
   };
 
   // Pagination Logic
@@ -50,7 +56,7 @@ export default function Anomalies() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-white">Anomalies</h1>
+          <h1 className="text-2xl font-bold text-[var(--text-primary)]">Anomalies</h1>
           <p className="text-gray-400 text-sm mt-1">Automatically detected data issues</p>
         </div>
       </div>
@@ -58,7 +64,7 @@ export default function Anomalies() {
       {/* Summary */}
       <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-6">
         <div className="glass-card p-4 text-center">
-          <div className="text-2xl font-bold text-white">{data.total}</div>
+          <div className="text-2xl font-bold text-[var(--text-primary)]">{data.total}</div>
           <div className="text-xs text-gray-500 mt-1">Total Anomalies</div>
         </div>
         <div className="glass-card p-4 text-center">
@@ -98,7 +104,7 @@ export default function Anomalies() {
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-dark-500/30">
+              <tr className="border-none">
                 <th className="text-left text-xs font-medium text-gray-500 uppercase px-5 py-3">File</th>
                 <th className="text-left text-xs font-medium text-gray-500 uppercase px-5 py-3">Row</th>
                 <th className="text-left text-xs font-medium text-gray-500 uppercase px-5 py-3">Column</th>
@@ -118,11 +124,11 @@ export default function Anomalies() {
                 </td></tr>
               ) : (
                 currentAnomalies.map((a) => (
-                <tr key={a.id} className="border-b border-dark-500/10 hover:bg-dark-600/30 transition-smooth">
-                  <td className="px-5 py-3 text-sm text-gray-300">{a.filename}</td>
+                <tr key={a.id} className="border-none hover:bg-[rgb(var(--bg-700))] transition-smooth">
+                  <td className="px-5 py-3 text-sm text-[var(--text-primary)]">{a.filename}</td>
                   <td className="px-5 py-3 text-sm text-gray-400 font-mono">{a.row_index}</td>
-                  <td className="px-5 py-3 text-sm text-gray-300 font-medium">{a.column_name}</td>
-                  <td className="px-5 py-3 text-sm text-gray-200 font-mono">{a.value}</td>
+                  <td className="px-5 py-3 text-sm text-[var(--text-primary)] font-bold">{a.column_name}</td>
+                  <td className="px-5 py-3 text-sm text-[var(--text-primary)] font-mono">{a.value}</td>
                   <td className="px-5 py-3">{typeBadge(a.anomaly_type)}</td>
                   <td className="px-5 py-3">{severityBadge(a.severity)}</td>
                   <td className="px-5 py-3 text-xs text-gray-400 max-w-xs truncate">{a.reason}</td>

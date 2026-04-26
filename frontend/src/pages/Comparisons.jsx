@@ -83,7 +83,7 @@ export default function Comparisons() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-white">Comparisons</h1>
+          <h1 className="text-2xl font-bold text-[var(--text-primary)]">Comparisons</h1>
           <p className="text-gray-400 text-sm mt-1">Compare files and detect differences</p>
         </div>
         <button onClick={() => setShowModal(true)} className="btn-primary flex items-center gap-2">
@@ -95,7 +95,7 @@ export default function Comparisons() {
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-dark-500/30">
+              <tr className="border-b border-[var(--border-color)]">
                 <th className="text-left text-xs font-medium text-gray-500 uppercase px-5 py-3">Name</th>
                 <th className="text-left text-xs font-medium text-gray-500 uppercase px-5 py-3">Project</th>
                 <th className="text-left text-xs font-medium text-gray-500 uppercase px-5 py-3">Source</th>
@@ -113,11 +113,11 @@ export default function Comparisons() {
                 <tr><td colSpan={8} className="text-center py-10 text-gray-500 text-sm">No comparisons yet</td></tr>
               ) : (
                 comparisons.map((c) => (
-                <tr key={c.id} className="border-b border-dark-500/10 hover:bg-dark-600/30 transition-smooth cursor-pointer" onClick={() => navigate(`/comparisons/${c.id}`)}>
+                <tr key={c.id} className="border-b border-[var(--border-color)] hover:bg-[rgb(var(--bg-700))] transition-smooth cursor-pointer" onClick={() => navigate(`/comparisons/${c.id}`)}>
                   <td className="px-5 py-3.5">
                     <div className="flex items-center gap-2">
                       <GitCompare size={14} className="text-accent" />
-                      <span className="text-sm text-gray-200">{c.name}</span>
+                      <span className="text-sm text-[var(--text-primary)]">{c.name}</span>
                     </div>
                   </td>
                   <td className="px-5 py-3.5 text-sm text-gray-400">{c.project_name}</td>
@@ -125,7 +125,7 @@ export default function Comparisons() {
                   <td className="px-5 py-3.5 text-sm text-gray-400 max-w-[120px] truncate">{c.target_filename}</td>
                   <td className="px-5 py-3.5">{statusBadge(c.status)}</td>
                   <td className="px-5 py-3.5 text-sm text-gray-400">{new Date(c.created_at).toLocaleDateString()}</td>
-                  <td className="px-5 py-3.5 text-sm text-gray-200 text-right">{c.result_summary?.modified_rows || 0}</td>
+                  <td className="px-5 py-3.5 text-sm text-[var(--text-primary)] text-right">{c.result_summary?.modified_rows || 0}</td>
                   <td className="px-3 py-3.5" onClick={(e) => e.stopPropagation()}>
                     <button onClick={() => deleteComparison(c.id)} className="p-1.5 text-gray-500 hover:text-red-400 rounded transition-smooth"><Trash2 size={14} /></button>
                   </td>
@@ -140,11 +140,11 @@ export default function Comparisons() {
       <Modal isOpen={showModal} onClose={() => setShowModal(false)} title="New Comparison" size="lg">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1.5">Comparison Name</label>
+            <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">Comparison Name</label>
             <input value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} className="input-dark" placeholder="e.g., Q4 Revenue vs Q3" required />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1.5">Project</label>
+            <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">Project</label>
             <select value={form.project_id} onChange={e => setForm({ ...form, project_id: e.target.value, source_file_id: '', target_file_id: '' })} className="input-dark" required>
               <option value="">Select project...</option>
               {projects.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
@@ -152,14 +152,14 @@ export default function Comparisons() {
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">Source File</label>
+              <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">Source File</label>
               <select value={form.source_file_id} onChange={e => setForm({ ...form, source_file_id: e.target.value })} className="input-dark" required>
                 <option value="">Select source...</option>
                 {projectFiles.map(f => <option key={f.id} value={f.id}>{f.original_filename}</option>)}
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">Target File</label>
+              <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">Target File</label>
               <select value={form.target_file_id} onChange={e => setForm({ ...form, target_file_id: e.target.value })} className="input-dark" required>
                 <option value="">Select target...</option>
                 {projectFiles.map(f => <option key={f.id} value={f.id}>{f.original_filename}</option>)}
@@ -172,7 +172,7 @@ export default function Comparisons() {
             {configOpen ? '▾' : '▸'} Advanced Configuration
           </button>
           {configOpen && (
-            <div className="space-y-3 pl-4 border-l-2 border-dark-500/30">
+            <div className="space-y-3 pl-4 border-l-2 border-[var(--border-color)]">
               <div>
                 <label className="block text-xs font-medium text-gray-400 mb-1">Primary Key Column</label>
                 <input value={config.primary_key} onChange={e => setConfig({ ...config, primary_key: e.target.value })} className="input-dark text-sm" placeholder="e.g., id" />
@@ -182,8 +182,8 @@ export default function Comparisons() {
                 <input value={config.ignore_columns} onChange={e => setConfig({ ...config, ignore_columns: e.target.value })} className="input-dark text-sm" placeholder="e.g., updated_at, created_at" />
               </div>
               <div className="flex items-center gap-4">
-                <label className="flex items-center gap-2 text-sm text-gray-300">
-                  <input type="checkbox" checked={config.case_sensitive} onChange={e => setConfig({ ...config, case_sensitive: e.target.checked })} className="rounded bg-dark-600 border-dark-500 text-accent" />
+                <label className="flex items-center gap-2 text-sm text-[var(--text-secondary)]">
+                  <input type="checkbox" checked={config.case_sensitive} onChange={e => setConfig({ ...config, case_sensitive: e.target.checked })} className="rounded bg-[rgb(var(--bg-600))] border-[var(--border-color)] text-accent" />
                   Case sensitive
                 </label>
                 <div>

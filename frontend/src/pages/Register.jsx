@@ -26,17 +26,17 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-dark-900 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-[rgb(var(--bg-900))] flex items-center justify-center px-4 transition-colors">
       <div className="w-full max-w-md">
         <div className="flex items-center justify-center gap-3 mb-10">
           <div className="w-10 h-10 bg-accent rounded-xl flex items-center justify-center">
             <Zap size={22} className="text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-white">DataCompare AI</h1>
+          <h1 className="text-2xl font-bold text-[var(--text-primary)]">DataCompare AI</h1>
         </div>
 
-        <div className="bg-dark-700/50 border border-dark-500/30 rounded-2xl p-8">
-          <h2 className="text-xl font-semibold text-white mb-1">Create account</h2>
+        <div className="glass-card p-8">
+          <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-1">Create account</h2>
           <p className="text-gray-400 text-sm mb-6">Get started with DataCompare AI</p>
 
           {error && (
@@ -45,7 +45,7 @@ export default function Register() {
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">Full Name</label>
+              <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">Full Name</label>
               <input
                 type="text"
                 value={form.full_name}
@@ -56,7 +56,7 @@ export default function Register() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">Email</label>
+              <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">Email</label>
               <input
                 type="email"
                 value={form.email}
@@ -67,7 +67,7 @@ export default function Register() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">Password</label>
+              <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">Password</label>
               <div className="relative">
                 <input
                   type={showPassword ? 'text' : 'password'}
@@ -84,7 +84,7 @@ export default function Register() {
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">Confirm Password</label>
+              <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">Confirm Password</label>
               <input
                 type="password"
                 value={form.confirm}

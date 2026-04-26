@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useLocation } from 'react-router-dom';
-import { Search, Bell, X, Settings, LogOut, User } from 'lucide-react';
+import { Search, Bell, X, Settings, LogOut, User, Sun, Moon } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const pageTitles = {
   '/': 'Dashboard',
@@ -21,10 +22,22 @@ export default function Topbar() {
   
   const [showNotifications, setShowNotifications] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
+  
   const notifRef = useRef(null);
   const profileRef = useRef(null);
 
-  // Mock notifications state with persistence
+  useEffect(() => {
+    if (theme === 'light') {
+      document.body.classList.add('light-mode');
+    } else {
+      document.body.classList.remove('light-mode');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+
   const [notifications, setNotifications] = useState(() => {
     const saved = localStorage.getItem('notifications');
     if (saved) return JSON.parse(saved);
@@ -61,8 +74,10 @@ export default function Topbar() {
   }, []);
 
   return (
-    <header className="h-16 bg-dark-800 border-b border-dark-500/30 flex items-center justify-between px-6 z-20 relative transition-colors duration-300">
-      <h2 className="text-base font-semibold text-[var(--text-primary)]">{title}</h2>
+    <header className="h-16 bg-[rgb(var(--bg-800))] border-b border-[var(--border-color)] flex items-center justify-between px-6 z-20 relative transition-colors duration-300">
+      <div className="flex items-center gap-4">
+        <h2 className="text-base font-bold text-[var(--text-primary)]">{title}</h2>
+      </div>
 
       <div className="flex items-center gap-4">
         {/* Search */}
@@ -70,91 +85,117 @@ export default function Topbar() {
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-secondary)]" />
           <input
             type="text"
-            placeholder="Search..."
-            className="pl-9 pr-4 py-2 bg-dark-700 border border-dark-500/30 rounded-lg text-sm text-[var(--text-primary)] placeholder-gray-500 focus:border-accent/50 focus:outline-none w-48 transition-colors duration-300"
+            placeholder="Search Intelligence..."
+            className="pl-9 pr-4 py-2 bg-[rgb(var(--bg-700))] border border-[var(--border-color)] rounded-xl text-sm text-[var(--text-primary)] placeholder-gray-500 focus:border-accent/50 focus:outline-none w-64 transition-all duration-300"
           />
         </div>
+
+        {/* Theme Toggle */}
+        <button 
+          onClick={toggleTheme}
+          className="p-2 text-[var(--text-secondary)] hover:text-accent bg-[rgb(var(--bg-700))] border border-[var(--border-color)] rounded-xl transition-all hover:scale-110 active:scale-95"
+          title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
+        >
+          {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+        </button>
 
         {/* Notifications */}
         <div className="relative" ref={notifRef}>
             <button 
-                className={`relative p-2 transition-smooth rounded-lg ${showNotifications ? 'bg-dark-700 text-[var(--text-primary)]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-dark-700/50'}`}
+                className={`relative p-2 transition-all rounded-xl border border-[var(--border-color)] ${showNotifications ? 'bg-accent text-white' : 'bg-[rgb(var(--bg-700))] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}
                 onClick={() => setShowNotifications(!showNotifications)}
             >
             <Bell size={18} />
             {notifications.length > 0 && (
-                <span className="absolute top-1 right-1 w-2 h-2 bg-accent rounded-full"></span>
+                <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full border-2 border-[rgb(var(--bg-800))]"></span>
             )}
             </button>
 
-            {/* Notification Dropdown */}
-            {showNotifications && (
-                <div className="absolute right-0 mt-2 w-80 bg-dark-800 border border-dark-500 rounded-xl shadow-xl overflow-hidden z-50 animate-in fade-in zoom-in-95 duration-200">
-                    <div className="p-3 border-b border-dark-500/50 flex justify-between items-center">
-                        <h3 className="font-semibold text-sm text-[var(--text-primary)]">Notifications</h3>
-                        <button onClick={() => setShowNotifications(false)} className="text-[var(--text-secondary)] hover:text-[var(--text-primary)]"><X size={14} /></button>
-                    </div>
-                    <div className="max-h-96 overflow-y-auto">
-                        {notifications.length === 0 ? (
-                            <div className="p-8 text-center text-[var(--text-secondary)] text-sm">No new notifications</div>
-                        ) : (
-                            notifications.map(n => (
-                                <div key={n.id} className="p-3 border-b border-dark-500/30 hover:bg-dark-700/50 transition-colors flex gap-3">
-                                    <div className={`mt-1 w-2 h-2 rounded-full flex-shrink-0 ${n.type === 'success' ? 'bg-green-500' : n.type === 'warning' ? 'bg-yellow-500' : 'bg-blue-500'}`}></div>
-                                    <div>
-                                        <p className="text-sm font-medium text-[var(--text-primary)]">{n.title}</p>
-                                        <p className="text-xs text-[var(--text-secondary)] mt-0.5">{n.message}</p>
-                                        <p className="text-[10px] text-[var(--text-secondary)] mt-1.5">{n.time}</p>
-                                    </div>
-                                </div>
-                            ))
-                        )}
-                    </div>
-                    {notifications.length > 0 && (
-                        <div className="p-2 text-center border-t border-dark-500/30">
-                            <button 
-                                onClick={markAllAsRead}
-                                className="text-xs text-accent hover:text-accent-light w-full py-1"
-                            >
-                                Mark all as read
-                            </button>
+            <AnimatePresence>
+                {showNotifications && (
+                    <motion.div 
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        className="absolute right-0 mt-3 w-80 bg-[rgb(var(--bg-800))] border border-[var(--border-color)] rounded-2xl shadow-2xl overflow-hidden z-50"
+                    >
+                        <div className="p-4 border-b border-[var(--border-color)] flex justify-between items-center bg-[rgb(var(--bg-700))]">
+                            <h3 className="font-bold text-sm text-[var(--text-primary)] uppercase tracking-widest">Notifications</h3>
+                            <button onClick={() => setShowNotifications(false)} className="text-[var(--text-secondary)] hover:text-[var(--text-primary)]"><X size={14} /></button>
                         </div>
-                    )}
-                </div>
-            )}
+                        <div className="max-h-96 overflow-y-auto custom-scrollbar">
+                            {notifications.length === 0 ? (
+                                <div className="p-10 text-center text-[var(--text-secondary)] text-sm italic">Clean slate. No alerts.</div>
+                            ) : (
+                                notifications.map(n => (
+                                    <div key={n.id} className="p-4 border-b border-[var(--border-color)] hover:bg-[rgb(var(--bg-700))] transition-colors flex gap-3 group">
+                                        <div className={`mt-1 w-2 h-2 rounded-full flex-shrink-0 ${n.type === 'success' ? 'bg-green-500' : n.type === 'warning' ? 'bg-yellow-500' : 'bg-blue-500'}`}></div>
+                                        <div>
+                                            <p className="text-sm font-bold text-[var(--text-primary)] group-hover:text-accent transition-colors">{n.title}</p>
+                                            <p className="text-xs text-[var(--text-secondary)] mt-1 leading-relaxed">{n.message}</p>
+                                            <p className="text-[10px] text-[var(--text-secondary)] font-mono mt-2 opacity-60">{n.time}</p>
+                                        </div>
+                                    </div>
+                                ))
+                            )}
+                        </div>
+                        {notifications.length > 0 && (
+                            <div className="p-3 text-center bg-[rgb(var(--bg-700))]">
+                                <button 
+                                    onClick={markAllAsRead}
+                                    className="text-[10px] font-black uppercase text-accent hover:text-accent-light tracking-widest transition-colors"
+                                >
+                                    Clear All Intelligence
+                                </button>
+                            </div>
+                        )}
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
 
         {/* Profile Dropdown */}
         <div className="relative" ref={profileRef}>
              <button 
                 onClick={() => setShowProfileMenu(!showProfileMenu)}
-                className="flex items-center gap-2.5 hover:bg-dark-700 p-1.5 pr-3 rounded-lg transition-colors border border-transparent hover:border-dark-500/50"
+                className="flex items-center gap-2.5 bg-[rgb(var(--bg-700))] hover:bg-[rgb(var(--bg-600))] p-1 pr-3 rounded-xl transition-all border border-[var(--border-color)]"
              >
-                <div className="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center font-bold text-sm">
+                <div className="w-8 h-8 rounded-lg bg-accent text-white flex items-center justify-center font-black text-xs shadow-lg shadow-accent/20">
                     {user?.full_name?.charAt(0)?.toUpperCase() || 'U'}
                 </div>
-                <span className="text-sm font-medium text-[var(--text-primary)] hidden sm:block">{user?.full_name || 'User'}</span>
+                <span className="text-xs font-bold text-[var(--text-primary)] hidden sm:block">{user?.full_name || 'User Account'}</span>
              </button>
 
-             {showProfileMenu && (
-                 <div className="absolute right-0 top-full mt-2 w-48 bg-dark-800 border border-dark-500 rounded-xl shadow-xl overflow-hidden animate-in fade-in zoom-in-95 duration-100 z-50">
-                     <div className="p-1">
-                         <a href="/settings" className="flex items-center gap-2 px-3 py-2 text-sm text-[var(--text-secondary)] hover:bg-dark-700 hover:text-[var(--text-primary)] rounded-md transition-colors">
-                             <User size={16} /> Profile
-                         </a>
-                         <a href="/settings" className="flex items-center gap-2 px-3 py-2 text-sm text-[var(--text-secondary)] hover:bg-dark-700 hover:text-[var(--text-primary)] rounded-md transition-colors">
-                             <Settings size={16} /> Settings
-                         </a>
-                         <div className="h-px bg-dark-500/50 my-1"></div>
-                         <button 
-                            onClick={handleLogout}
-                            className="w-full flex items-center gap-2 px-3 py-2 text-sm text-red-400 hover:bg-red-500/10 rounded-md transition-colors text-left"
-                         >
-                             <LogOut size={16} /> Sign out
-                         </button>
-                     </div>
-                 </div>
-             )}
+             <AnimatePresence>
+                 {showProfileMenu && (
+                     <motion.div 
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        className="absolute right-0 top-full mt-3 w-56 bg-[rgb(var(--bg-800))] border border-[var(--border-color)] rounded-2xl shadow-2xl overflow-hidden z-50"
+                     >
+                         <div className="p-2">
+                             <div className="px-3 py-2 mb-2">
+                                <p className="text-[10px] font-black text-[var(--text-secondary)] uppercase tracking-widest">Active User</p>
+                                <p className="text-sm font-bold text-[var(--text-primary)] truncate">{user?.email}</p>
+                             </div>
+                             <a href="/settings" className="flex items-center gap-3 px-3 py-2 text-sm text-[var(--text-secondary)] hover:bg-accent/10 hover:text-accent rounded-xl transition-all font-medium">
+                                 <User size={16} /> Identity Profile
+                             </a>
+                             <a href="/settings" className="flex items-center gap-3 px-3 py-2 text-sm text-[var(--text-secondary)] hover:bg-accent/10 hover:text-accent rounded-xl transition-all font-medium">
+                                 <Settings size={16} /> Preferences
+                             </a>
+                             <div className="h-px bg-[var(--border-color)] my-2"></div>
+                             <button 
+                                onClick={handleLogout}
+                                className="w-full flex items-center gap-3 px-3 py-2 text-sm text-red-500 hover:bg-red-500/10 rounded-xl transition-all font-bold text-left"
+                             >
+                                 <LogOut size={16} /> Terminate Session
+                             </button>
+                         </div>
+                     </motion.div>
+                 )}
+             </AnimatePresence>
         </div>
       </div>
     </header>

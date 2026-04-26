@@ -97,7 +97,7 @@ export default function Files() {
     <div onClick={() => setOpenMenuId(null)}>
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-white">Files</h1>
+        <h1 className="text-2xl font-bold text-[var(--text-primary)]">Files</h1>
         <p className="text-gray-400 text-sm mt-1">Upload and manage your data files</p>
       </div>
 
@@ -116,7 +116,7 @@ export default function Files() {
       {/* Dropzone */}
       <div
         {...getRootProps()}
-        className={`glass-card p-8 mb-6 text-center cursor-pointer transition-smooth border-2 border-dashed ${isDragActive ? 'border-accent bg-accent/5' : 'border-dark-500/30 hover:border-accent/40'}`}
+        className={`glass-card p-10 mb-6 text-center cursor-pointer transition-smooth border-2 border-dashed ${isDragActive ? 'border-accent bg-accent/5' : 'border-transparent hover:bg-[rgb(var(--bg-700))]'}`}
         onClick={open}
       >
         <input {...getInputProps()} />
@@ -127,7 +127,7 @@ export default function Files() {
                     <span>Uploading...</span>
                     <span>{uploadProgress}%</span>
                 </div>
-                <div className="h-2 bg-dark-600 rounded-full overflow-hidden">
+                <div className="h-2 bg-[rgb(var(--bg-600))] rounded-full overflow-hidden">
                     <div 
                         className="h-full bg-accent transition-all duration-300 ease-out"
                         style={{ width: `${uploadProgress}%` }}
@@ -135,7 +135,7 @@ export default function Files() {
                 </div>
             </div>
         ) : (
-            <p className="text-gray-300 font-medium">Drag & drop files here</p>
+            <p className="text-[var(--text-primary)] font-bold text-lg">Drag & drop files here</p>
         )}
         <p className="text-gray-500 text-xs mt-1">CSV, XLSX, XLS files supported</p>
         <button 
@@ -151,7 +151,7 @@ export default function Files() {
         <div className="overflow-x-auto min-h-[300px]">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-dark-500/30">
+              <tr className="border-none">
                 <th className="text-left text-xs font-medium text-gray-500 uppercase px-5 py-3">Name</th>
                 <th className="text-left text-xs font-medium text-gray-500 uppercase px-5 py-3">Size</th>
                 <th className="text-left text-xs font-medium text-gray-500 uppercase px-5 py-3">Rows</th>
@@ -168,11 +168,11 @@ export default function Files() {
                 <tr><td colSpan={7} className="text-center py-10 text-gray-500 text-sm">No files uploaded yet</td></tr>
               ) : (
                 files.map((f) => (
-                <tr key={f.id} className="border-b border-dark-500/10 hover:bg-dark-600/30 transition-smooth">
+                <tr key={f.id} className="border-none hover:bg-[rgb(var(--bg-700))] transition-smooth">
                   <td className="px-5 py-3.5">
                     <div className="flex items-center gap-2.5">
                       <FileSpreadsheet size={16} className="text-accent flex-shrink-0" />
-                      <span className="text-sm text-gray-200">{f.original_filename}</span>
+                      <span className="text-sm text-[var(--text-primary)]">{f.original_filename}</span>
                     </div>
                   </td>
                   <td className="px-5 py-3.5 text-sm text-gray-400">{formatSize(f.size_bytes)}</td>
@@ -183,17 +183,17 @@ export default function Files() {
                   <td className="px-3 py-3.5 relative">
                     <button 
                         onClick={(e) => toggleMenu(e, f.id)} 
-                        className={`p-1.5 rounded transition-smooth ${openMenuId === f.id ? 'bg-dark-600 text-white' : 'text-gray-500 hover:text-white'}`}
+                        className={`p-1.5 rounded transition-smooth ${openMenuId === f.id ? 'bg-accent text-white' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}
                     >
                       <MoreVertical size={14} />
                     </button>
                     
                     {/* Dropdown Menu */}
                     {openMenuId === f.id && (
-                        <div ref={menuRef} className="absolute right-8 top-0 mt-2 w-40 bg-dark-800 border border-dark-500 rounded-lg shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-100">
+                        <div ref={menuRef} className="absolute right-8 top-0 mt-2 w-40 bg-[rgb(var(--bg-800))] border border-[var(--border-color)] rounded-lg shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-100">
                              <button 
                                 onClick={(e) => { e.stopPropagation(); setViewingFile(f); setOpenMenuId(null); }}
-                                className="w-full text-left px-4 py-2.5 text-sm text-gray-300 hover:bg-dark-700 hover:text-white flex items-center gap-2"
+                                className="w-full text-left px-4 py-2.5 text-sm text-[var(--text-secondary)] hover:bg-[rgb(var(--bg-700))] hover:text-[var(--text-primary)] flex items-center gap-2"
                              >
                                 <Eye size={14} className="text-blue-400" /> View Columns
                              </button>
@@ -218,16 +218,16 @@ export default function Files() {
         <div className="space-y-4">
              {viewingFile && (
                  <div>
-                     <p className="text-sm text-gray-400 mb-3">Columns for <span className="text-white font-medium">{viewingFile.original_filename}</span>:</p>
-                     <div className="max-h-64 overflow-y-auto rounded-lg border border-dark-500/30 bg-dark-900/50 p-2">
+                     <p className="text-sm text-[var(--text-secondary)] mb-3">Columns for <span className="text-[var(--text-primary)] font-bold">{viewingFile.original_filename}</span>:</p>
+                      <div className="max-h-80 overflow-y-auto rounded-2xl bg-[rgb(var(--bg-700))] p-3 shadow-inner">
                         {(!viewingFile.column_metadata || Object.keys(viewingFile.column_metadata).length === 0) ? (
-                            <p className="text-center text-gray-500 text-sm py-4">No column metadata available</p>
+                            <p className="text-center text-gray-500 text-sm py-8">No column metadata available</p>
                         ) : (
-                            <ul className="space-y-1">
+                            <ul className="space-y-2">
                                 {viewingFile.column_metadata.map((colInfo, index) => (
-                                    <li key={index} className="text-sm text-gray-300 flex justify-between px-2 py-1.5 hover:bg-dark-700/30 rounded">
-                                        <span>{colInfo.name}</span>
-                                        <span className="text-xs text-gray-500 bg-dark-700 px-1.5 py-0.5 rounded">{colInfo.dtype}</span>
+                                    <li key={index} className="text-sm text-[var(--text-primary)] flex justify-between px-4 py-3 bg-[rgb(var(--bg-800))] rounded-xl shadow-sm hover:shadow-md transition-all group">
+                                        <span className="font-bold">{colInfo.name}</span>
+                                        <span className="text-xs font-mono font-black text-accent bg-accent/10 px-3 py-1 rounded-full">{colInfo.dtype}</span>
                                     </li>
                                 ))}
                             </ul>

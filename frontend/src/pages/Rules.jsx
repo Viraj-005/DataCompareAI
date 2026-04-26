@@ -84,7 +84,7 @@ export default function Rules() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-white">Rules</h1>
+          <h1 className="text-2xl font-bold text-[var(--text-primary)]">Rules</h1>
           <p className="text-gray-400 text-sm mt-1">Define and enforce data validation rules</p>
         </div>
         <div className="flex gap-2">
@@ -94,16 +94,16 @@ export default function Rules() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 bg-dark-700 rounded-lg p-1 mb-6 w-fit">
-        <button onClick={() => setTab('rules')} className={`px-4 py-2 text-sm font-medium rounded-md transition-smooth ${tab === 'rules' ? 'bg-accent text-white' : 'text-gray-400 hover:text-white'}`}>Rules ({rules.length})</button>
-        <button onClick={() => setTab('violations')} className={`px-4 py-2 text-sm font-medium rounded-md transition-smooth ${tab === 'violations' ? 'bg-accent text-white' : 'text-gray-400 hover:text-white'}`}>Violations ({violations.length})</button>
+      <div className="flex gap-1 bg-[rgb(var(--bg-700))] rounded-lg p-1 mb-6 w-fit shadow-sm">
+        <button onClick={() => setTab('rules')} className={`px-4 py-2 text-sm font-bold rounded-md transition-smooth ${tab === 'rules' ? 'bg-accent text-white shadow-md' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}>Rules ({rules.length})</button>
+        <button onClick={() => setTab('violations')} className={`px-4 py-2 text-sm font-bold rounded-md transition-smooth ${tab === 'violations' ? 'bg-accent text-white shadow-md' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}>Violations ({violations.length})</button>
       </div>
 
       {tab === 'rules' && (
         <div className="glass-card overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-dark-500/30">
+              <tr className="border-none">
                 <th className="text-left text-xs font-medium text-gray-500 uppercase px-5 py-3">Name</th>
                 <th className="text-left text-xs font-medium text-gray-500 uppercase px-5 py-3">Column</th>
                 <th className="text-left text-xs font-medium text-gray-500 uppercase px-5 py-3">Type</th>
@@ -115,8 +115,8 @@ export default function Rules() {
             <tbody>
               {rules.length === 0 && <tr><td colSpan={6} className="text-center py-10 text-gray-500 text-sm">No rules defined yet</td></tr>}
               {currentItems.map((r) => (
-                <tr key={r.id} className="border-b border-dark-500/10 hover:bg-dark-600/30 transition-smooth">
-                  <td className="px-5 py-3 text-sm text-gray-200 flex items-center gap-2"><Shield size={14} className="text-accent" />{r.name}</td>
+                <tr key={r.id} className="border-none hover:bg-[rgb(var(--bg-700))] transition-smooth">
+                  <td className="px-5 py-3 text-sm text-[var(--text-primary)] font-bold flex items-center gap-2"><Shield size={14} className="text-accent" />{r.name}</td>
                   <td className="px-5 py-3 text-sm text-gray-300 font-mono">{r.column_name}</td>
                   <td className="px-5 py-3"><span className="px-2 py-0.5 text-xs font-medium rounded-full bg-accent/10 text-accent">{r.rule_type}</span></td>
                   <td className="px-5 py-3 text-xs text-gray-400">{r.parameters ? JSON.stringify(r.parameters) : '-'}</td>
@@ -142,7 +142,7 @@ export default function Rules() {
         <div className="glass-card overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-dark-500/30">
+              <tr className="border-none">
                 <th className="text-left text-xs font-medium text-gray-500 uppercase px-5 py-3">Rule</th>
                 <th className="text-left text-xs font-medium text-gray-500 uppercase px-5 py-3">File</th>
                 <th className="text-left text-xs font-medium text-gray-500 uppercase px-5 py-3">Row</th>
@@ -154,11 +154,11 @@ export default function Rules() {
             <tbody>
               {violations.length === 0 && <tr><td colSpan={6} className="text-center py-10 text-gray-500 text-sm">No violations found</td></tr>}
               {currentItems.map((v) => (
-                <tr key={v.id} className="border-b border-dark-500/10 hover:bg-dark-600/30 transition-smooth">
-                  <td className="px-5 py-3 text-sm text-gray-300">{v.rule_name}</td>
+                <tr key={v.id} className="border-none hover:bg-[rgb(var(--bg-700))] transition-smooth">
+                  <td className="px-5 py-3 text-sm text-[var(--text-primary)] font-bold">{v.rule_name}</td>
                   <td className="px-5 py-3 text-sm text-gray-400">{v.filename}</td>
                   <td className="px-5 py-3 text-sm text-gray-400 font-mono">{v.row_index}</td>
-                  <td className="px-5 py-3 text-sm text-gray-300">{v.column_name}</td>
+                  <td className="px-5 py-3 text-sm text-[var(--text-primary)]">{v.column_name}</td>
                   <td className="px-5 py-3 text-sm text-red-400 font-mono">{v.value || 'null'}</td>
                   <td className="px-5 py-3 text-xs text-gray-400 max-w-xs truncate">{v.message}</td>
                 </tr>
@@ -181,22 +181,22 @@ export default function Rules() {
       <Modal isOpen={showModal} onClose={() => setShowModal(false)} title="New Rule">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1.5">Rule Name</label>
+            <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">Rule Name</label>
             <input value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} className="input-dark" placeholder="e.g., Positive Revenue" required />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1.5">Project</label>
+            <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">Project</label>
             <select value={form.project_id} onChange={e => setForm({ ...form, project_id: e.target.value })} className="input-dark" required>
               <option value="">Select project...</option>
               {projects.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1.5">Column Name</label>
+            <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">Column Name</label>
             <input value={form.column_name} onChange={e => setForm({ ...form, column_name: e.target.value })} className="input-dark" placeholder="e.g., revenue" required />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1.5">Rule Type</label>
+            <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">Rule Type</label>
             <select value={form.rule_type} onChange={e => setForm({ ...form, rule_type: e.target.value })} className="input-dark">
               {ruleTypes.map(t => <option key={t} value={t}>{t}</option>)}
             </select>
